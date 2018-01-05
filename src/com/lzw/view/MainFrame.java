@@ -1,10 +1,9 @@
 package com.lzw.view;
 
-import java.awt.*;
-
 import javax.swing.*;
 import javax.swing.border.*;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
