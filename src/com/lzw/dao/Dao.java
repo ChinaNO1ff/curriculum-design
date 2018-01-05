@@ -5,9 +5,9 @@ import java.sql.*;
 public class Dao {
 	
 	private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final static String DB_URL = "jdbc:mysql://60.205.211.111:3306/demo_db?useSSL=false&autoReconnect=true";
-	private final static String USER = "ywm";
-	private final static String PASS = "qmdx00";
+	private final static String DB_URL = "jdbc:mysql://60.205.211.111:3306/db_design?useSSL=false&autoReconnect=true";
+	private final static String USER = "admin";
+	private final static String PASS = "abc123";
 	
 	public static Connection conn = null;
 	

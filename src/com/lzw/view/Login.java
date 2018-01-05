@@ -9,8 +9,8 @@ import java.sql.*;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private static Login login;
-	private static MainFrame main_frame;
+	private static Login login;//登录窗口
+	private static MainFrame main_frame;//主窗口
 	private JTextField username;
 	private JPasswordField password;
 
@@ -72,20 +72,8 @@ public class Login extends JFrame {
 		
 		JButton info = new JButton("\u767B\u5F55");
 		info.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				if(username.getText().trim().length()==0||password.getText().trim().length()==0){
-					JOptionPane.showMessageDialog(null, "请输入用户名和密码");
-					username.requestFocus();
-				}else{
-					if(isRight(username.getText().trim(),password.getText().trim())){
-						showFrame();
-					}else{
-						JOptionPane.showMessageDialog(null, "登录失败");
-						username.requestFocus();
-					}
-				}
-				
+				info();
 			}
 		});
 		info.setFont(new Font("宋体", Font.PLAIN, 20));
@@ -104,10 +92,10 @@ public class Login extends JFrame {
 		reset.setBounds(200, 126, 93, 31);
 		panel.add(reset);
 	}
-	
-	private boolean isRight(String name,String password){
+	//静态方法,判断用户名和密码是否正确;
+	private static boolean isRight(String name,String password){
 		try {
-			PreparedStatement sql = Dao.conn.prepareStatement("select * from person where name = ? and password = ?");
+			PreparedStatement sql = Dao.conn.prepareStatement("select * from tb_user where name = ? and password = ?");
 			sql.setString(1, name);
 			sql.setString(2, password);
 			ResultSet res = sql.executeQuery();
@@ -117,6 +105,21 @@ public class Login extends JFrame {
 			return false;
 		}
 	}
+	//执行登录动作;
+	private void info(){
+		if(username.getText().trim().length()==0||password.getText().trim().length()==0){
+			JOptionPane.showMessageDialog(null, "请输入用户名和密码");
+			username.requestFocus();
+		}else{
+			if(isRight(username.getText().trim(),password.getText().trim())){
+				showFrame();
+			}else{
+				JOptionPane.showMessageDialog(null, "登录失败");
+				username.requestFocus();
+			}
+		}
+	}
+	//登录成功后的登录窗隐藏和主窗口显示;
 	private void showFrame(){
 		main_frame.setVisible(true);
 		login.setVisible(false);
