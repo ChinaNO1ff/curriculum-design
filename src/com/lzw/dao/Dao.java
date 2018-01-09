@@ -1,8 +1,6 @@
 package com.lzw.dao;
 
 import java.sql.*;
-import com.lzw.dao.model.*;
-import com.lzw.item.Item;
 
 public class Dao {
 	
@@ -24,21 +22,22 @@ public class Dao {
 		}
 	}
 	private Dao(){}
-	
-	
-	public static TbBuy getBuy(Item item){
-		String where = "number="+item.getNumber()+"";
-		TbBuy info = new TbBuy();
-		/*if(item.getNumber() != null){
-			TbBuy info = new TbBuy();
-			Statement sql = Dao.conn.createStatement();
-			ResultSet res = sql.executeQuery("select * from tb_buy where "+where);
-			if(res.next()){
 
-			}
-		}*/
-		
-		return info;
+	/*
+	 *	返回查询结果集;
+	 */
+	public static ResultSet findForResultSet(String sql){
+		if (conn == null)
+			return null;
+		ResultSet rs = null;
+		try {
+			Statement stmt = null;
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs = stmt.executeQuery(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
 	}
-	
 }

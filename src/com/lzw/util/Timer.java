@@ -16,4 +16,5 @@ public class Timer {
 	public static void main(String[] args) {
 		System.out.println(Timer.getNum());
 	}
+	
 }

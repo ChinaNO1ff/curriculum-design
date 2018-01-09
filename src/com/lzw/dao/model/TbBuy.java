@@ -1,12 +1,13 @@
 package com.lzw.dao.model;
 
 public class TbBuy {
+	
 	private String number;
 	private String name;
 	private float unit;
 	private int count;
 	private float total;
-	private int person;
+	private String person;
 	private String type;
 	
 	public String getNumber() {
@@ -33,10 +34,10 @@ public class TbBuy {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getPerson() {
+	public String getPerson() {
 		return person;
 	}
-	public void setPerson(int person) {
+	public void setPerson(String person) {
 		this.person = person;
 	}
 	public String getType() {
@@ -53,5 +54,7 @@ public class TbBuy {
 		return "TbBuy [number=" + number + ", name=" + name + ", unit=" + unit + ", count=" + count + ", total=" + total
 				+ ", person=" + person + ", type=" + type + "]";
 	}
+	
+	
 	
 }

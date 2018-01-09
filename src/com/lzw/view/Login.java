@@ -3,6 +3,8 @@ package com.lzw.view;
 import java.awt.*;
 import javax.swing.*;
 import com.lzw.dao.Dao;
+import com.lzw.util.GetModel;
+
 import java.awt.event.*;
 import java.sql.*;
 
@@ -108,19 +110,7 @@ public class Login extends JFrame {
 		reset.setBounds(199, 125, 93, 31);
 		panel.add(reset);
 	}
-	//静态方法,判断用户名和密码是否正确;
-	private boolean isRight(String name,String password){
-		try {
-			PreparedStatement sql = Dao.conn.prepareStatement("select * from tb_user where name = ? and password = ?");
-			sql.setString(1, name);
-			sql.setString(2, password);
-			ResultSet res = sql.executeQuery();
-			return res.next();
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
+	
 	//执行登录动作;
 	/*
 	 * 登录成功显示主窗口,登录失败显示提示窗口;
@@ -128,7 +118,7 @@ public class Login extends JFrame {
 	 */
 	@SuppressWarnings("deprecation")
 	private void inf(){
-		if(isRight(username.getText().trim(),password.getText().trim())){
+		if(GetModel.getLogin(username.getText().trim(),password.getText().trim())){
 			showFrame();
 		}else{
 			JOptionPane.showMessageDialog(null, "登录失败");
