@@ -1,7 +1,7 @@
 package com.lzw.item;
 
 /*
- * 	公共类;
+ * 	Item公共类;
  */
 public class Item {
 	private String number;
@@ -22,5 +22,9 @@ public class Item {
 	}
 	public void setName(String name){
 		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Item [number=" + number + ", name=" + name + "]";
 	}
 }
