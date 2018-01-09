@@ -1,6 +1,7 @@
 package com.lzw.dao.model;
 
 public class TbMoney {
+	
 	private String number;
 	private float out;
 	private float in;

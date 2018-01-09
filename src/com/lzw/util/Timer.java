@@ -13,8 +13,4 @@ public class Timer {
 		String second = String.format("%tS", date);
 		return "No."+year+month+day+hour+minute+second;
 	}
-	public static void main(String[] args) {
-		System.out.println(Timer.getNum());
-	}
-	
 }

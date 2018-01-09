@@ -2,12 +2,58 @@ package com.lzw.util;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import com.lzw.dao.Dao;
 import com.lzw.dao.model.*;
 import com.lzw.item.Item;
 
 public class GetModel {
+	/*
+	 * 	查询指定结果集;
+	 */
+	public static ResultSet findForResultSet(String sql) {
+		if (Dao.conn == null)
+			return null;
+		ResultSet rs = null;
+		try {
+			Statement stmt = null;
+			stmt = Dao.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+					ResultSet.CONCUR_READ_ONLY);
+			rs = stmt.executeQuery(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	/*
+	 *	 查询所有结果的集合;
+	 */
+	@SuppressWarnings("rawtypes")
+	public static List findForList(String sql) {
+		List<List> list = new ArrayList<List>();
+		ResultSet rs = findForResultSet(sql);
+		try {
+			ResultSetMetaData metaData = rs.getMetaData();
+			int colCount = metaData.getColumnCount();
+			while (rs.next()) {
+				List<String> row = new ArrayList<String>();
+				for (int i = 1; i <= colCount; i++) {
+					String str = rs.getString(i);
+					if (str != null && !str.isEmpty())
+						str = str.trim();
+					row.add(str);
+				}
+				list.add(row);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	/*
 	 * 登录验证
 	 */
@@ -24,13 +70,13 @@ public class GetModel {
 		}
 	}
 	/*
-	 * 读取采购信息
+	 * 读取指定采购信息
 	 */
 	public static TbBuy getBuy(Item item){
-		String where = "name="+item.getName()+"";
+		String where = "name='"+item.getName() + "'";
 		TbBuy info = new TbBuy();
 		if(item.getNumber() != null){
-			where = "number="+item.getNumber()+"";
+			where = "number='" + item.getNumber() + "'";
 		}
 		ResultSet set = Dao.findForResultSet("select * from tb_buy where "+where);
 		try {
@@ -48,13 +94,21 @@ public class GetModel {
 		return info;
 	}
 	/*
-	 * 	读取销售信息;
+	 *	 查询所有的采购信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbBuy> getAllBuy(){
+		List<TbBuy> list = findForList("select * from tb_buy");
+		return list;
+	}
+	/*
+	 * 	读取指定销售信息;
 	 */
 	public static TbSell getSell(Item item){
-		String where = "name="+item.getName()+"";
+		String where = "name='"+item.getName() + "'";
 		TbSell info = new TbSell();
 		if(item.getNumber() != null){
-			where = "number="+item.getNumber()+"";
+			where = "number='" + item.getNumber() + "'";
 		}
 		ResultSet set = Dao.findForResultSet("select * from tb_sell where "+where);
 		try {
@@ -71,13 +125,21 @@ public class GetModel {
 		return info;
 	}
 	/*
-	 * 	读取仓库信息
+	 * 	读取所有的销售信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbSell> getAllSell(){
+		List<TbSell> list = findForList("select * from tb_sell");
+		return list;
+	}
+	/*
+	 * 	读取指定仓库信息
 	 */
 	public static TbStore getStore(Item item){
-		String where = "name="+item.getName()+"";
+		String where = "name='"+item.getName() + "'";
 		TbStore info = new TbStore();
 		if(item.getNumber() != null){
-			where = "number="+item.getNumber()+"";
+			where = "number='" + item.getNumber() + "'";
 		}
 		ResultSet set = Dao.findForResultSet("select * from tb_store where "+where);
 		try {
@@ -93,10 +155,12 @@ public class GetModel {
 		}
 		return info;
 	}
-	public static void main(String[] args) {
-		Item item = new Item();
-		item.setNumber("12345678");
-		TbSell ts = getSell(item);
-		System.out.println(ts);
+	/*
+	 * 	读取所有的仓库信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbStore> getAllStore(){
+		List<TbStore> list = findForList("select * from tb_store");
+		return list;
 	}
 }
