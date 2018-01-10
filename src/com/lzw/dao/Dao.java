@@ -1,6 +1,8 @@
 package com.lzw.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dao {
 	
@@ -24,7 +26,7 @@ public class Dao {
 	private Dao(){}
 
 	/*
-	 *	返回查询结果集;
+	 * 	查询指定结果集;
 	 */
 	public static ResultSet findForResultSet(String sql){
 		if (conn == null)
@@ -39,5 +41,30 @@ public class Dao {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	/*
+	 *	 查询所有结果的集合;
+	 */
+	@SuppressWarnings("rawtypes")
+	public static List findForList(String sql) {
+		List<List> list = new ArrayList<List>();
+		ResultSet rs = findForResultSet(sql);
+		try {
+			ResultSetMetaData metaData = rs.getMetaData();
+			int colCount = metaData.getColumnCount();
+			while (rs.next()) {
+				List<String> row = new ArrayList<String>();
+				for (int i = 1; i <= colCount; i++) {
+					String str = rs.getString(i);
+					if (str != null && !str.isEmpty())
+						str = str.trim();
+					row.add(str);
+				}
+				list.add(row);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

@@ -55,6 +55,4 @@ public class TbBuy {
 				+ ", person=" + person + ", type=" + type + "]";
 	}
 	
-	
-	
 }

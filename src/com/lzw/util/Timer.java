@@ -3,7 +3,8 @@ package com.lzw.util;
 import java.util.Date;
 
 public class Timer {
-	private final static Date date = new Date();
+	
+	private static Date date = new Date();
 	public static String getNum(){
 		String year = String.format("%ty", date);
 		String month = String.format("%tm", date);

@@ -12,48 +12,7 @@ import com.lzw.dao.model.*;
 import com.lzw.item.Item;
 
 public class GetModel {
-	/*
-	 * 	查询指定结果集;
-	 */
-	public static ResultSet findForResultSet(String sql) {
-		if (Dao.conn == null)
-			return null;
-		ResultSet rs = null;
-		try {
-			Statement stmt = null;
-			stmt = Dao.conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
-			rs = stmt.executeQuery(sql);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rs;
-	}
-	/*
-	 *	 查询所有结果的集合;
-	 */
-	@SuppressWarnings("rawtypes")
-	public static List findForList(String sql) {
-		List<List> list = new ArrayList<List>();
-		ResultSet rs = findForResultSet(sql);
-		try {
-			ResultSetMetaData metaData = rs.getMetaData();
-			int colCount = metaData.getColumnCount();
-			while (rs.next()) {
-				List<String> row = new ArrayList<String>();
-				for (int i = 1; i <= colCount; i++) {
-					String str = rs.getString(i);
-					if (str != null && !str.isEmpty())
-						str = str.trim();
-					row.add(str);
-				}
-				list.add(row);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
+	
 	/*
 	 * 登录验证
 	 */
@@ -98,7 +57,7 @@ public class GetModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<TbBuy> getAllBuy(){
-		List<TbBuy> list = findForList("select * from tb_buy");
+		List<TbBuy> list = Dao.findForList("select * from tb_buy");
 		return list;
 	}
 	/*
@@ -129,7 +88,7 @@ public class GetModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<TbSell> getAllSell(){
-		List<TbSell> list = findForList("select * from tb_sell");
+		List<TbSell> list = Dao.findForList("select * from tb_sell");
 		return list;
 	}
 	/*
@@ -160,7 +119,7 @@ public class GetModel {
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<TbStore> getAllStore(){
-		List<TbStore> list = findForList("select * from tb_store");
+		List<TbStore> list = Dao.findForList("select * from tb_store");
 		return list;
 	}
 }
