@@ -45,12 +45,20 @@ public class MainFrame extends JFrame {
 		new_buy.setFont(new Font("宋体", Font.PLAIN, 12));
 		jhgl.add(new_buy);
 		
-		JMenuItem buy_date = new JMenuItem("\u8FDB\u8D27\u8BB0\u5F55");
+		JMenuItem buy_date = new JMenuItem("\u67E5\u8BE2\u8BB0\u5F55");
 		buy_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				buy_record_show();
 			}
 		});
+		
+		JMenuItem remove_buy = new JMenuItem("\u5220\u9664\u8BB0\u5F55");
+		remove_buy.setFont(new Font("宋体", Font.PLAIN, 12));
+		jhgl.add(remove_buy);
+		
+		JMenuItem change_buy = new JMenuItem("\u66F4\u6539\u8BB0\u5F55");
+		change_buy.setFont(new Font("宋体", Font.PLAIN, 12));
+		jhgl.add(change_buy);
 		buy_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		jhgl.add(buy_date);
 		
@@ -70,7 +78,7 @@ public class MainFrame extends JFrame {
 		kcgl.setFont(new Font("宋体", Font.PLAIN, 12));
 		menuBar.add(kcgl);
 		
-		JMenuItem unit_date = new JMenuItem("\u4EF7\u683C\u8C03\u6574");
+		JMenuItem unit_date = new JMenuItem("\u8C03\u6574\u5E93\u5B58");
 		unit_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		kcgl.add(unit_date);
 		
@@ -82,6 +90,10 @@ public class MainFrame extends JFrame {
 		user_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		menuBar.add(user_date);
 		
+		JMenuItem user_add = new JMenuItem("\u65B0\u589E\u7528\u6237");
+		user_add.setFont(new Font("宋体", Font.PLAIN, 12));
+		user_date.add(user_add);
+		
 		JMenuItem user_message = new JMenuItem("\u7528\u6237\u4FE1\u606F");
 		user_message.setFont(new Font("宋体", Font.PLAIN, 12));
 		user_date.add(user_message);
@@ -89,6 +101,10 @@ public class MainFrame extends JFrame {
 		JMenuItem password_change = new JMenuItem("\u4FEE\u6539\u5BC6\u7801");
 		user_date.add(password_change);
 		password_change.setFont(new Font("宋体", Font.PLAIN, 12));
+		
+		JMenuItem user_remove = new JMenuItem("\u5220\u9664\u7528\u6237");
+		user_remove.setFont(new Font("宋体", Font.PLAIN, 12));
+		user_date.add(user_remove);
 		
 		JMenu xxcx = new JMenu("\u4F9B\u5E94\u5546\u7BA1\u7406");
 		xxcx.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -105,6 +121,10 @@ public class MainFrame extends JFrame {
 		JMenuItem provide_check = new JMenuItem("\u4F9B\u5E94\u5546\u67E5\u8BE2");
 		provide_check.setFont(new Font("宋体", Font.PLAIN, 12));
 		xxcx.add(provide_check);
+		
+		JMenuItem provide_update = new JMenuItem("\u66F4\u65B0\u4FE1\u606F");
+		provide_update.setFont(new Font("宋体", Font.PLAIN, 12));
+		xxcx.add(provide_update);
 		
 		JMenu xtwh = new JMenu("\u7CFB\u7EDF\u7EF4\u62A4");
 		xtwh.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -135,5 +155,7 @@ public class MainFrame extends JFrame {
 		List<TbBuy> list = GetModel.getAllBuy();
 		buy_record.getTable().setModel(new MyTableModel<TbBuy>(list,new String[] {
 			"订单号", "名称", "单价", "数量", "总价", "采购员", "类型"}));
+		//自定义第一列的列宽;
+		buy_record.getTable().getColumnModel().getColumn(0).setPreferredWidth(160);
 	}
 }

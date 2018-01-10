@@ -5,8 +5,10 @@ package com.lzw.view;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -32,6 +34,11 @@ public class Buy_record extends JFrame {
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
+		table.setRowHeight(24);
+		DefaultTableCellRenderer row = new DefaultTableCellRenderer();   
+		row.setHorizontalAlignment(JLabel.CENTER); //单元格居中对齐;
+		table.setDefaultRenderer(Object.class,row);
+		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(getTable());
 	}
 
