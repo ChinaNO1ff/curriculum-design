@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
@@ -29,7 +31,7 @@ public class Buy_add extends JFrame {
 	private JTextField unit;
 	private JTextField person;
 
-	public Buy_add() {
+	public Buy_add(JFrame root) {//主窗口的引用;
 		setResizable(false);
 		setTitle("\u8FDB\u8D27\u8BA2\u5355");
 		setBounds(460, 180, 450, 300);
@@ -120,6 +122,11 @@ public class Buy_add extends JFrame {
 		person.setBounds(170, 147, 121, 21);
 		panel.add(person);
 		person.setColumns(10);
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e){
+				root.setEnabled(true);
+	        }
+	    });
 	}
 	/*
 	 * 	重置订单表;
@@ -154,7 +161,7 @@ public class Buy_add extends JFrame {
 	 * 	正则表达式判断输入的数量和单价是否合法;
 	 */
 	private boolean isNumber(String str){ 
-		Pattern pattern = Pattern.compile("[0-9]+\\.?"); 
+		Pattern pattern = Pattern.compile("[0-9]+\\.?[0-9]+");
 		Matcher isNum = pattern.matcher(str);
 		if( !isNum.matches() ){
 			return false; 

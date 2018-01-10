@@ -4,6 +4,9 @@
 package com.lzw.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,11 +20,11 @@ public class Buy_record extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public Buy_record() {
+	public Buy_record(JFrame root) {//主窗口的引用;
 		setResizable(false);
 		setTitle("\u91C7\u8D2D\u8BB0\u5F55");
 		setBounds(400, 180, 560, 320);
@@ -40,6 +43,11 @@ public class Buy_record extends JFrame {
 		table.setDefaultRenderer(Object.class,row);
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(getTable());
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e){
+				root.setEnabled(true);
+	        }
+	    });
 	}
 
 	public JTable getTable() {

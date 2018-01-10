@@ -29,7 +29,7 @@ public class MyTableModel<T> extends AbstractTableModel{
 
 	public Object getValueAt(int rowIndex,int colIndex) {
 		String str = (list.get(rowIndex)).toString();//获取指定行的集合;
-		String[] cols = str.substring(1, str.length()-1).split(",");//去掉左右中括号;
+		String[] cols = str.substring(1, str.length()-1).split(",");//去掉左右中括号;[]
 		return cols[colIndex];
 	}
 
