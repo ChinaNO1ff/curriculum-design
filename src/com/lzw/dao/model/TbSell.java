@@ -6,7 +6,7 @@ public class TbSell {
 	private float unit;
 	private int count;
 	private float total;
-	private String more;
+	private String provide;
 	public String getNumber() {
 		return number;
 	}
@@ -31,11 +31,11 @@ public class TbSell {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getMore() {
-		return more;
+	public String getProvide() {
+		return provide;
 	}
-	public void setMore(String more) {
-		this.more = more;
+	public void setProvide(String provide) {
+		this.provide = provide;
 	}
 	public float getTotal() {
 		return total;
@@ -43,7 +43,7 @@ public class TbSell {
 	
 	public String toString() {
 		return "TbSell [number=" + number + ", name=" + name + ", unit=" + unit + ", count=" + count + ", total="
-				+ total + ", more=" + more + "]";
+				+ total + ", provide=" + provide + "]";
 	}
 	
 }

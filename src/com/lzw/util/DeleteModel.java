@@ -83,4 +83,28 @@ public class DeleteModel {
 			e.printStackTrace();
 		}
 	}
+	/*
+	 * 	删除指定供应商数据
+	 */
+	public static void deletePro(Item item){
+		String where = "name='"+item.getName() + "'";
+		if(item.getNumber() != null){
+			where = "number='" + item.getNumber() + "'";
+		}
+		try {
+			Dao.conn.createStatement().execute("delete from tb_pro where "+where);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/*
+	 * 	删除所有供应商数据
+	 */
+	public static void deleteAllPro(Item item){
+		try {
+			Dao.conn.createStatement().execute("delete from tb_pro");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

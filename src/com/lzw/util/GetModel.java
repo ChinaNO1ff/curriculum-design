@@ -2,10 +2,7 @@ package com.lzw.util;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import com.lzw.dao.Dao;
 import com.lzw.dao.model.*;
@@ -76,7 +73,7 @@ public class GetModel {
 				info.setName(set.getString("name"));
 				info.setUnit(set.getFloat("unit"));
 				info.setCount(set.getInt("count"));
-				info.setMore(set.getString("more"));
+				info.setProvide(set.getString("provide"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,6 +117,37 @@ public class GetModel {
 	@SuppressWarnings("unchecked")
 	public static List<TbStore> getAllStore(){
 		List<TbStore> list = Dao.findForList("select * from tb_store");
+		return list;
+	}
+	/*
+	 * 读取指定供应商信息
+	 */
+	public static TbPro getPro(Item item){
+		String where = "name='"+item.getName() + "'";
+		TbPro info = new TbPro();
+		if(item.getNumber() != null){
+			where = "number='" + item.getNumber() + "'";
+		}
+		ResultSet set = Dao.findForResultSet("select * from tb_pro where "+where);
+		try {
+			if(set.next()){
+				info.setNumber(set.getString("number"));
+				info.setName(set.getString("name"));
+				info.setPhone(set.getString("phone"));
+				info.setMail(set.getString("mail"));
+				info.setAddress(set.getString("address"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+	/*
+	 * 	读取所有的供应商信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbPro> getAllPro(){
+		List<TbPro> list = Dao.findForList("select * from tb_pro");
 		return list;
 	}
 }

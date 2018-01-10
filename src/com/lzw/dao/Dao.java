@@ -33,12 +33,10 @@ public class Dao {
 			return null;
 		ResultSet rs = null;
 		try {
-			Statement stmt = null;
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-					ResultSet.CONCUR_READ_ONLY);
+			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return rs;
 	}
@@ -63,7 +61,7 @@ public class Dao {
 				list.add(row);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return list;
 	}

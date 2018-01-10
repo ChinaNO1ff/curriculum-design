@@ -14,7 +14,7 @@ public class InsertModel {
 			Statement stmt = Dao.conn.createStatement();
 			stmt.execute(sql);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	/*
@@ -31,7 +31,7 @@ public class InsertModel {
 	public static void insertSell(TbSell tb){
 		insert("insert into tb_sell values('"+ tb.getNumber() + "','" + tb.getName() + "','"
 				+tb.getUnit() + "','" + tb.getCount() + "','" + tb.getTotal() + "','" 
-				+ tb.getMore() + "')");
+				+ tb.getProvide() + "')");
 	}
 	/*
 	 * 	插入库存数据;
@@ -40,5 +40,12 @@ public class InsertModel {
 		insert("insert into tb_store values('"+ tb.getNumber() + "','" + tb.getName() + "','"
 				+tb.getUnit() + "','" + tb.getCount() + "','" + tb.getType() + "')");
 	}
-	
+	/*
+	 *	 插入供应商数据;
+	 */
+	public static void insertPro(TbPro tb){
+		insert("insert into tb_pro values('"+ tb.getNumber() + "','" + tb.getName() + "','"
+				+tb.getPhone() + "','" + tb.getMail() + "','" + tb.getAddress() + "')");
+	}
+
 }

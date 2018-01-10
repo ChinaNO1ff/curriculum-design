@@ -2,11 +2,8 @@ package com.lzw.view;
 
 import java.awt.*;
 import javax.swing.*;
-import com.lzw.dao.Dao;
 import com.lzw.util.GetModel;
-
 import java.awt.event.*;
-import java.sql.*;
 
 @SuppressWarnings("serial")
 public class Login extends JFrame {

@@ -49,7 +49,9 @@ public class TbBuy {
 	public float getTotal() {
 		return total;
 	}
-	
+	public void setTotal(float total) {
+		this.total = total;
+	}
 	public String toString() {
 		return "TbBuy [number=" + number + ", name=" + name + ", unit=" + unit + ", count=" + count + ", total=" + total
 				+ ", person=" + person + ", type=" + type + "]";
