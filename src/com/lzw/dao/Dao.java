@@ -7,7 +7,7 @@ import java.util.List;
 public class Dao {
 	
 	private final static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private final static String DB_URL = "jdbc:mysql://60.205.211.111:3306/db_design?useSSL=false&autoReconnect=true";
+	private final static String DB_URL = "jdbc:mysql://60.205.211.111:3306/db_design?useSSL=false&autoReconnect=true&failOverReadOnly=false";
 	private final static String USER = "admin";
 	private final static String PASS = "abc123";
 	
@@ -29,14 +29,16 @@ public class Dao {
 	 * 	查询指定结果集;
 	 */
 	public static ResultSet findForResultSet(String sql){
-		if (conn == null)
+		if (conn == null){
+			System.out.println("conn=null");
 			return null;
+		}
 		ResultSet rs = null;
 		try {
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("连接数据库超时");
 		}
 		return rs;
 	}
@@ -61,7 +63,7 @@ public class Dao {
 				list.add(row);
 			}
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("查询数据失败,集合为空");
 		}
 		return list;
 	}

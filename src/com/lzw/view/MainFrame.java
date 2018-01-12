@@ -13,12 +13,10 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;//顶层虚拟桌面;
-	/*
-	 * 添加进监听事件中;保证每次点击时刷新;
-	 */
-	private Buy_record buy_record=new Buy_record(this);//进货记录窗口;
-	
+	private Buy_record buy_record=new Buy_record(this);//查询进货记录窗口;
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
+	
+	
 	private Buy_delete buy_delete=new Buy_delete(this);//删除采购订单的窗口;
 	private Buy_change buy_change=new Buy_change(this);//更新采购订单的窗口;
 	
@@ -42,8 +40,12 @@ public class MainFrame extends JFrame {
 		JMenuItem new_buy = new JMenuItem("\u65B0\u8BA2\u5355");
 		new_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buy_add.setVisible(true);
-				setEnabled(false);//点击后让主窗口禁止点击;
+				if(buy_add.fillDrop()){
+					setEnabled(false);//点击后让主窗口禁止点击;
+					buy_add.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
 			}
 		});
 		new_buy.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -52,8 +54,12 @@ public class MainFrame extends JFrame {
 		JMenuItem buy_date = new JMenuItem("\u67E5\u8BE2\u8BB0\u5F55");
 		buy_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setEnabled(false);
-				buy_record.setVisible(true);
+				if(buy_record.fillTable()){
+					setEnabled(false);//点击后让主窗口禁止点击;
+					buy_record.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
 			}
 		});
 		

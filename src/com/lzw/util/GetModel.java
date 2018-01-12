@@ -151,11 +151,21 @@ public class GetModel {
 		return list;
 	}
 	/*
-	 * 	读取所有的销售信息;
+	 * 	读取所有的类型信息;
 	 */
 	@SuppressWarnings("unchecked")
-	public static List<TbType> getAllType(){
-		List<TbType> list = Dao.findForList("select * from tb_type");
+	public static String getTypeByName(String name){
+		List<TbType> list = Dao.findForList("select type from tb_type where name='"+name+"'");
+		String res = list.toString();
+		return res.substring(2,res.length()-2);
+	}
+	/*
+	 * 读取所有的名称信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbType> getAllName(){
+		List<TbType> list = Dao.findForList("select name from tb_type");
 		return list;
 	}
+	
 }

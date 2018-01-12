@@ -25,7 +25,6 @@ import javax.swing.JComboBox;
 public class Buy_add extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox<String> type;
 	private JComboBox<String> name;
 	private JTextField count;
 	private JTextField unit;
@@ -73,14 +72,9 @@ public class Buy_add extends JFrame {
 		button.setBounds(75, 208, 93, 23);
 		panel.add(button);
 		
-		JLabel lblNewLabel = new JLabel("\u7C7B\u578B");
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-		lblNewLabel.setBounds(91, 13, 54, 15);
-		panel.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("\u540D\u79F0");
 		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(91, 48, 54, 15);
+		lblNewLabel_1.setBounds(91, 36, 54, 15);
 		panel.add(lblNewLabel_1);
 		
 		JLabel label = new JLabel("\u6570\u91CF");
@@ -89,7 +83,7 @@ public class Buy_add extends JFrame {
 		panel.add(label);
 		
 		count = new JTextField();
-		count.setBounds(170, 79, 121, 21);
+		count.setBounds(170, 76, 121, 21);
 		panel.add(count);
 		count.setColumns(10);
 		
@@ -113,18 +107,18 @@ public class Buy_add extends JFrame {
 		panel.add(person);
 		person.setColumns(10);
 		
-		type = new JComboBox<String>();
-		type.setBounds(170, 10, 121, 23);
-		panel.add(type);
-		
 		name = new JComboBox<String>();
-		name.setBounds(170, 45, 121, 21);
+		name.setBounds(170, 33, 121, 21);
 		panel.add(name);
+		fillDrop();
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				root.setEnabled(true);
 	        }
 	    });
+	}
+	public JComboBox<String> getDropName(){
+		return name;
 	}
 	/*
 	 * 	重置订单表;
@@ -142,8 +136,9 @@ public class Buy_add extends JFrame {
 	private void submit(){
 		TbBuy tb = new TbBuy();
 		tb.setNumber(Timer.getNum());
-		tb.setName(((String) name.getSelectedItem()).trim());
-		tb.setType(((String) type.getSelectedItem()).trim());
+		String name_value = (String) name.getSelectedItem();
+		tb.setName(name_value);
+		tb.setType(GetModel.getTypeByName(name_value));
 		int count_value = Integer.parseInt(count.getText().trim());
 		tb.setCount(count_value);
 		float unit_value = Float.parseFloat(unit.getText().trim());
@@ -158,8 +153,13 @@ public class Buy_add extends JFrame {
 	/*
 	 * 	填充下拉菜单;
 	 */
-	private void fillList(){
-		List<TbType> list = GetModel.getAllType();
-		
+	public boolean fillDrop(){
+		List<TbType> name_list = GetModel.getAllName();
+		if(name_list.size()==0){
+			return false;
+		}else{
+			getDropName().setModel(new MyComboModel<TbType>(name_list));
+			return true;
+		}
 	}
 }
