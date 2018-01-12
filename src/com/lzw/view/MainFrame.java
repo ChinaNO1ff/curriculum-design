@@ -15,10 +15,7 @@ public class MainFrame extends JFrame {
 	private JDesktopPane desktopPane;//顶层虚拟桌面;
 	private Buy_record buy_record=new Buy_record(this);//查询进货记录窗口;
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
-	
-	
-	private Buy_delete buy_delete=new Buy_delete(this);//删除采购订单的窗口;
-	private Buy_change buy_change=new Buy_change(this);//更新采购订单的窗口;
+	private Buy_change buy_change=new Buy_change(this);//修改采购订单的窗口;
 	
 	/**
 	 * Create the frame.
@@ -54,7 +51,7 @@ public class MainFrame extends JFrame {
 		JMenuItem buy_date = new JMenuItem("\u67E5\u8BE2\u8BB0\u5F55");
 		buy_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(buy_record.fillTable()){
+				if(buy_record.fillTable()==2||buy_record.fillTable()==1){
 					setEnabled(false);//点击后让主窗口禁止点击;
 					buy_record.setVisible(true);
 				}else{
@@ -63,25 +60,16 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
-		JMenuItem remove_buy = new JMenuItem("\u5220\u9664\u8BB0\u5F55");
+		JMenuItem remove_buy = new JMenuItem("\u4FEE\u6539\u8BA2\u5355");
 		remove_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buy_delete.setVisible(true);
+				buy_change.setVisible(true);
 				setEnabled(false);//点击后让主窗口禁止点击;
 			}
 		});
 		remove_buy.setFont(new Font("宋体", Font.PLAIN, 12));
 		jhgl.add(remove_buy);
 		
-		JMenuItem change_buy = new JMenuItem("\u66F4\u6539\u8BB0\u5F55");
-		change_buy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				buy_change.setVisible(true);
-				setEnabled(false);//点击后让主窗口禁止点击;
-			}
-		});
-		change_buy.setFont(new Font("宋体", Font.PLAIN, 12));
-		jhgl.add(change_buy);
 		buy_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		jhgl.add(buy_date);
 		

@@ -3,6 +3,10 @@ package com.lzw.item;
 public class Item{
 	private String number;
 	private String name;
+	public Item(){}
+	public Item(String number){
+		this.number = number;
+	}
 	public String getNumber() {
 		return number;
 	}

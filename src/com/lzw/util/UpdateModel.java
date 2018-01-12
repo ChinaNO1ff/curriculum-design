@@ -23,8 +23,9 @@ public class UpdateModel {
 	public static void updateBuy(TbBuy tb){
 		update("update tb_buy set number='" + tb.getNumber() + "',name='" 
 				+ tb.getName() + "',unit='" + tb.getUnit() + "',count='" 
-				+ tb.getCount() + "',person='" + tb.getPerson() + "',bz='" 
-				+ tb.getType() + "' where number='" + tb.getNumber() + "'");
+				+ tb.getCount() + "',person='" + tb.getPerson() + "',type='" 
+				+ tb.getType() + "',total='" + tb.getTotal() + "' where number='"
+				+ tb.getNumber() + "'");
 	}
 	/*
 	 * 修改销售数据;

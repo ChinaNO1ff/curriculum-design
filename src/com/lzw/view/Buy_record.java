@@ -30,7 +30,7 @@ public class Buy_record extends JFrame {
 	public Buy_record(JFrame root) {//主窗口的引用;
 		setResizable(false);
 		setTitle("\u91C7\u8D2D\u8BB0\u5F55");
-		setBounds(400, 180, 560, 320);
+		setBounds(420, 180, 560, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -58,16 +58,19 @@ public class Buy_record extends JFrame {
 	/*
 	 * 	填充采购订单信息表格;
 	 */
-	public boolean fillTable(){
+	@SuppressWarnings("unused")
+	public int fillTable(){
 		List<TbBuy> list = GetModel.getAllBuy();
 		if(list.size() == 0){
-			return false;
+			return 1;
+		}else if(list == null){
+			return 0;
 		}else{
 			getTable().setModel(new MyTableModel<TbBuy>(list,new String[] {
 			"订单号", "名称", "单价", "数量", "总价", "采购员", "类型"}));
 			getTable().getColumnModel().getColumn(0).setPreferredWidth(150);//自定义第一列的列宽;
 			getTable().getColumnModel().getColumn(1).setPreferredWidth(140);//自定义第二列的列宽;
-			return true;
+			return 2;
 		}
 	}
 

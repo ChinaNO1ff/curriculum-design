@@ -33,8 +33,8 @@ public class Buy_add extends JFrame {
 
 	public Buy_add(JFrame root) {//主窗口的引用;
 		setResizable(false);
-		setTitle("\u8FDB\u8D27\u8BA2\u5355");
-		setBounds(460, 180, 450, 300);
+		setTitle("\u91C7\u8D2D\u8BA2\u5355");
+		setBounds(480, 180, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -108,6 +108,7 @@ public class Buy_add extends JFrame {
 		person.setColumns(10);
 		
 		name = new JComboBox<String>();
+		name.setFont(new Font("宋体", Font.PLAIN, 12));
 		name.setBounds(170, 33, 121, 21);
 		panel.add(name);
 		fillDrop();

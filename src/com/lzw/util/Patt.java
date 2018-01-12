@@ -29,4 +29,15 @@ public class Patt {
 		} 
 		return true; 
 	}
+	/*
+	 * 	ÅĞ¶ÏÊÇ·ñÎª±àºÅ;
+	 */
+	public static boolean isNumber(String str){ 
+		Pattern pattern = Pattern.compile("^No.[0-9]{12}");
+		Matcher isNum = pattern.matcher(str);
+		if( !isNum.matches() ){
+			return false; 
+		} 
+		return true; 
+	}
 }

@@ -29,7 +29,7 @@ public class MyComboModel<T> extends AbstractListModel<String> implements ComboB
 		return this.item;
 	}
 
-	public void setSelectedItem(Object anItem) {
-		this.item = (String) anItem;
+	public void setSelectedItem(Object item) {
+		this.item = (String) item;
 	}
 }

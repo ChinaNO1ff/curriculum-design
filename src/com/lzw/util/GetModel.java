@@ -45,7 +45,7 @@ public class GetModel {
 				info.setPerson(set.getString("person"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("查询数据失败,集合为空");
 		}
 		return info;
 	}
@@ -157,7 +157,7 @@ public class GetModel {
 	public static String getTypeByName(String name){
 		List<TbType> list = Dao.findForList("select type from tb_type where name='"+name+"'");
 		String res = list.toString();
-		return res.substring(2,res.length()-2);
+		return res.substring(2,res.length()-2);//去掉[[]]
 	}
 	/*
 	 * 读取所有的名称信息;
@@ -167,5 +167,4 @@ public class GetModel {
 		List<TbType> list = Dao.findForList("select name from tb_type");
 		return list;
 	}
-	
 }
