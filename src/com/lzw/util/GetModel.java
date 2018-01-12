@@ -150,4 +150,12 @@ public class GetModel {
 		List<TbPro> list = Dao.findForList("select * from tb_pro");
 		return list;
 	}
+	/*
+	 * 	读取所有的销售信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbType> getAllType(){
+		List<TbType> list = Dao.findForList("select * from tb_type");
+		return list;
+	}
 }

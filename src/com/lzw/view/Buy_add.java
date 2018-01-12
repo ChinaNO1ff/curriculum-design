@@ -15,21 +15,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class Buy_add extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField type;
-	private JTextField name;
+	private JComboBox<String> type;
+	private JComboBox<String> name;
 	private JTextField count;
 	private JTextField unit;
 	private JTextField person;
+	
 
 	public Buy_add(JFrame root) {//主窗口的引用;
 		setResizable(false);
@@ -58,11 +59,10 @@ public class Buy_add extends JFrame {
 		button.setFont(new Font("宋体", Font.PLAIN, 12));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(type.getText().trim().equals("")||name.getText().trim().equals("")||count.getText().trim().equals("")||
-						unit.getText().trim().equals("")||person.getText().trim().equals("")){
+				if(count.getText().trim().equals("")||unit.getText().trim().equals("")||person.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "请输入完整的信息!");
 				}else{
-					if(isNumber(count.getText().trim())&&isNumber(unit.getText().trim())){
+					if(Patt.isCount(count.getText().trim())&&Patt.isUnit(unit.getText().trim())){
 						submit();
 					}else{
 						JOptionPane.showMessageDialog(null, "输入的信息不合法!");
@@ -78,20 +78,10 @@ public class Buy_add extends JFrame {
 		lblNewLabel.setBounds(91, 13, 54, 15);
 		panel.add(lblNewLabel);
 		
-		type = new JTextField();
-		type.setBounds(170, 10, 121, 21);
-		panel.add(type);
-		type.setColumns(10);
-		
 		JLabel lblNewLabel_1 = new JLabel("\u540D\u79F0");
 		lblNewLabel_1.setFont(new Font("宋体", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(91, 48, 54, 15);
 		panel.add(lblNewLabel_1);
-		
-		name = new JTextField();
-		name.setBounds(170, 45, 121, 21);
-		panel.add(name);
-		name.setColumns(10);
 		
 		JLabel label = new JLabel("\u6570\u91CF");
 		label.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -122,6 +112,14 @@ public class Buy_add extends JFrame {
 		person.setBounds(170, 147, 121, 21);
 		panel.add(person);
 		person.setColumns(10);
+		
+		type = new JComboBox<String>();
+		type.setBounds(170, 10, 121, 23);
+		panel.add(type);
+		
+		name = new JComboBox<String>();
+		name.setBounds(170, 45, 121, 21);
+		panel.add(name);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
 				root.setEnabled(true);
@@ -132,8 +130,8 @@ public class Buy_add extends JFrame {
 	 * 	重置订单表;
 	 */
 	private void reset(){
-		type.setText("");
-		name.setText("");
+	  /*type.setSelectedItem("");
+		name.setSelectedItem("");*/
 		unit.setText("");
 		count.setText("");
 		person.setText("");
@@ -144,8 +142,8 @@ public class Buy_add extends JFrame {
 	private void submit(){
 		TbBuy tb = new TbBuy();
 		tb.setNumber(Timer.getNum());
-		tb.setName(name.getText().trim());
-		tb.setType(type.getText().trim());
+		tb.setName(((String) name.getSelectedItem()).trim());
+		tb.setType(((String) type.getSelectedItem()).trim());
 		int count_value = Integer.parseInt(count.getText().trim());
 		tb.setCount(count_value);
 		float unit_value = Float.parseFloat(unit.getText().trim());
@@ -158,14 +156,10 @@ public class Buy_add extends JFrame {
 		reset();
 	}
 	/*
-	 * 	正则表达式判断输入的数量和单价是否合法;
+	 * 	填充下拉菜单;
 	 */
-	private boolean isNumber(String str){ 
-		Pattern pattern = Pattern.compile("[0-9]+\\.?[0-9]+");
-		Matcher isNum = pattern.matcher(str);
-		if( !isNum.matches() ){
-			return false; 
-		} 
-		return true; 
+	private void fillList(){
+		List<TbType> list = GetModel.getAllType();
+		
 	}
 }

@@ -2,13 +2,10 @@ package com.lzw.view;
 
 import javax.swing.*;
 
-import com.lzw.dao.model.*;
-import com.lzw.util.*;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
@@ -16,7 +13,11 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;//顶层虚拟桌面;
+	/*
+	 * 添加进监听事件中;保证每次点击时刷新;
+	 */
 	private Buy_record buy_record=new Buy_record(this);//进货记录窗口;
+	
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
 	private Buy_delete buy_delete=new Buy_delete(this);//删除采购订单的窗口;
 	private Buy_change buy_change=new Buy_change(this);//更新采购订单的窗口;
@@ -52,7 +53,7 @@ public class MainFrame extends JFrame {
 		buy_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setEnabled(false);
-				buy_record_show();
+				buy_record.setVisible(true);
 			}
 		});
 		
@@ -165,16 +166,5 @@ public class MainFrame extends JFrame {
 		bg.setIcon(new ImageIcon(MainFrame.class.getResource("/res/bg.jpg")));
 		bg.setBounds(0, 0, 794, 401);
 		desktopPane.add(bg);
-	}
-	/*
-	 * 	显示采购订单记录;
-	 */
-	private void buy_record_show(){
-		buy_record.setVisible(true);
-		List<TbBuy> list = GetModel.getAllBuy();
-		buy_record.getTable().setModel(new MyTableModel<TbBuy>(list,new String[] {
-			"订单号", "名称", "单价", "数量", "总价", "采购员", "类型"}));
-		//自定义第一列的列宽;
-		buy_record.getTable().getColumnModel().getColumn(0).setPreferredWidth(160);
 	}
 }
