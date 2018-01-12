@@ -156,8 +156,14 @@ public class GetModel {
 	@SuppressWarnings("unchecked")
 	public static String getTypeByName(String name){
 		List<TbType> list = Dao.findForList("select type from tb_type where name='"+name+"'");
-		String res = list.toString();
-		return res.substring(2,res.length()-2);//去掉[[]]
+		if(list.size()==0){
+			return "unknow";
+		}else{
+			String res = list.toString();
+			System.out.println(res);
+			return res.substring(2,res.length()-2);//去掉[[]]
+		}
+		
 	}
 	/*
 	 * 读取所有的名称信息;

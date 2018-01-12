@@ -125,8 +125,6 @@ public class Buy_add extends JFrame {
 	 * 	重置订单表;
 	 */
 	private void reset(){
-	  /*type.setSelectedItem("");
-		name.setSelectedItem("");*/
 		unit.setText("");
 		count.setText("");
 		person.setText("");
@@ -144,8 +142,8 @@ public class Buy_add extends JFrame {
 		tb.setCount(count_value);
 		float unit_value = Float.parseFloat(unit.getText().trim());
 		tb.setUnit(unit_value);
-		float total = count_value*unit_value;
-		tb.setTotal(total);
+		float total_value = count_value*unit_value;
+		tb.setTotal(total_value);
 		tb.setPerson(person.getText().trim());
 		InsertModel.insertBuy(tb);
 		JOptionPane.showMessageDialog(null, "添加订单成功");

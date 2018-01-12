@@ -13,7 +13,7 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;//顶层虚拟桌面;
-	private Buy_record buy_record=new Buy_record(this);//查询进货记录窗口;
+	private Buy_record buy_record=new Buy_record(this);//查询采购记录窗口;
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
 	private Buy_change buy_change=new Buy_change(this);//修改采购订单的窗口;
 	
