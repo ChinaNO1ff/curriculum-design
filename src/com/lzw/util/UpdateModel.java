@@ -46,7 +46,7 @@ public class UpdateModel {
 				+ tb.getNumber() + "'");
 	}
 	/*
-	 * 修改库存数据;
+	 * 修改供应商数据;
 	 */
 	public static void updatePro(TbPro tb){
 		update("update tb_pro set number='" + tb.getNumber() + "',name='"
