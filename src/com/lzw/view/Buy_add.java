@@ -114,6 +114,7 @@ public class Buy_add extends JFrame {
 		fillDrop();
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
+				reset();
 				root.setEnabled(true);
 	        }
 	    });

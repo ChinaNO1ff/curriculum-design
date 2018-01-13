@@ -49,8 +49,16 @@ public class UpdateModel {
 	 * 修改供应商数据;
 	 */
 	public static void updatePro(TbPro tb){
-		update("update tb_pro set number='" + tb.getNumber() + "',name='"
-				+ tb.getName() + "',phone='" + tb.getPhone() + "',mail='" 
-				+ tb.getMail() + "',address='" + tb.getAddress() + "'");
+		update("update tb_pro set name='" + tb.getName() + "',phone='" 
+				+ tb.getPhone() + "',mail='" + tb.getMail() 
+				+ "',address='" + tb.getAddress() + "' where number='" 
+				+ tb.getNumber() + "'");
+	}
+	/*
+	 * 	修改用户数据;
+	 */
+	public static void updateUser(TbUser tb){
+		update("update tb_user set password='" 
+		+ tb.getPassword() + "' where name='" + tb.getName() + "'");
 	}
 }

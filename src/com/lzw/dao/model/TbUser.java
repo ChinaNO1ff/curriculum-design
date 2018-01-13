@@ -1,14 +1,11 @@
 package com.lzw.dao.model;
 
 public class TbUser {
-	private int ID;
 	private String name;
 	private String password;
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
+	public TbUser(){}
+	public TbUser(String name){
+		this.name = name;
 	}
 	public String getName() {
 		return name;
@@ -23,6 +20,6 @@ public class TbUser {
 		this.password = password;
 	}
 	public String toString() {
-		return "TbUser [ID=" + ID + ", name=" + name + ", password=" + password + "]";
+		return "TbUser [name=" + name + ", password=" + password + "]";
 	}
 }

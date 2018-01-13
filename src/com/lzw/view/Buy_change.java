@@ -168,7 +168,7 @@ public class Buy_change extends JFrame {
 		}else{
 			if(Patt.isCount(count.getText().trim())&&Patt.isUnit(unit.getText().trim())){
 				try{
-					Item item = new Item(number.getText().trim());
+					Item item = new Item(num);
 					TbBuy tb = GetModel.getBuy(item);
 					float unit_value = Float.parseFloat(unit.getText().trim());
 					int count_value = Integer.parseInt(count.getText().trim());
@@ -190,13 +190,17 @@ public class Buy_change extends JFrame {
 	 * 	删除此订单;
 	 */
 	private void drop(){
-		DeleteModel.deleteBuy(new Item(num));
-		JOptionPane.showMessageDialog(null, "删除成功!");
-		number.setText("");
-		name.setText("");
-		unit.setText("");
-		count.setText("");
-		person.setText("");
-		number.requestFocus();
+		if(number.getText().trim().equals("")){
+			JOptionPane.showMessageDialog(null, "请输入订单号");
+		}else{
+			DeleteModel.deleteBuy(new Item(num));
+			JOptionPane.showMessageDialog(null, "删除成功!");
+			number.setText("");
+			name.setText("");
+			unit.setText("");
+			count.setText("");
+			person.setText("");
+			number.requestFocus();
+		}
 	}
 }

@@ -43,7 +43,7 @@ public class Pro_add extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel name_msg = new JLabel("\u540D\u79F0");
+		JLabel name_msg = new JLabel("\u5382\u5546");
 		name_msg.setFont(new Font("宋体", Font.PLAIN, 12));
 		name_msg.setBounds(47, 32, 54, 15);
 		panel.add(name_msg);
@@ -53,7 +53,7 @@ public class Pro_add extends JFrame {
 		panel.add(name);
 		name.setColumns(10);
 		
-		JLabel phone_msg = new JLabel("\u53F7\u7801");
+		JLabel phone_msg = new JLabel("\u8054\u7CFB\u7535\u8BDD");
 		phone_msg.setFont(new Font("宋体", Font.PLAIN, 12));
 		phone_msg.setBounds(47, 71, 54, 15);
 		panel.add(phone_msg);
@@ -79,6 +79,7 @@ public class Pro_add extends JFrame {
 		panel.add(address_msg);
 		
 		JButton submit = new JButton("\u6DFB\u52A0");
+		submit.setFont(new Font("宋体", Font.PLAIN, 12));
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(name.getText().trim().equals("")||phone.getText().trim().equals("")||mail.getText().trim().equals("")||address.getText().trim().equals("")){
@@ -96,6 +97,7 @@ public class Pro_add extends JFrame {
 		panel.add(submit);
 		
 		JButton reset = new JButton("\u91CD\u7F6E");
+		reset.setFont(new Font("宋体", Font.PLAIN, 12));
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reset();
@@ -116,6 +118,7 @@ public class Pro_add extends JFrame {
 		address.setColumns(10);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
+				reset();
 				root.setEnabled(true);
 	        }
 	    });
@@ -142,5 +145,7 @@ public class Pro_add extends JFrame {
 		System.out.println(tp);
 		tp.setNumber(Timer.getNum());
 		InsertModel.insertPro(tp);
+		JOptionPane.showMessageDialog(null, "添加供应商成功");
+		reset();
 	}
 }

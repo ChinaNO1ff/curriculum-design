@@ -47,5 +47,11 @@ public class InsertModel {
 		insert("insert into tb_pro values('"+ tb.getNumber() + "','" + tb.getName() + "','"
 				+tb.getPhone() + "','" + tb.getMail() + "','" + tb.getAddress() + "')");
 	}
+	/*
+	 *	 插入用户数据;
+	 */
+	public static void insertUser(TbUser tb){
+		insert("insert into tb_user values('"+ tb.getName() + "','" + tb.getPassword()+ "')");
+	}
 
 }

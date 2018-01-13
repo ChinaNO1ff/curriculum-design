@@ -173,4 +173,29 @@ public class GetModel {
 		List<TbType> list = Dao.findForList("select name from tb_type");
 		return list;
 	}
+	/*
+	 * 读取指定用户信息
+	 */
+	public static TbUser getUser(String username){
+		String where = "name='"+username + "'";
+		TbUser info = new TbUser();
+		ResultSet set = Dao.findForResultSet("select * from tb_user where "+where);
+		try {
+			if(set.next()){
+				info.setName(set.getString("name"));
+				info.setPassword(set.getString("password"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+	/*
+	 * 读取所有的用户信息;
+	 */
+	@SuppressWarnings("unchecked")
+	public static List<TbUser> getAllUser(){
+		List<TbUser> list = Dao.findForList("select * from tb_user");
+		return list;
+	}
 }

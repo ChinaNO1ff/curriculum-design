@@ -13,12 +13,18 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JDesktopPane desktopPane;//顶层虚拟桌面;
+	
 	private Buy_record buy_record=new Buy_record(this);//查询采购记录窗口;
-	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
+	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口;
 	private Buy_change buy_change=new Buy_change(this);//修改采购订单的窗口;
 	
 	private Pro_add pro_add=new Pro_add(this);//增加供应商信息窗口;
-	private Pro_record pro_record=new Pro_record(this);//供应商查询窗口
+	private Pro_record pro_record=new Pro_record(this);//供应商查询窗口;
+	private Pro_change pro_change=new Pro_change(this);//供应商更新窗口;
+	
+	private User_add user_add=new User_add(this);//新增用户窗口;
+	private User_change user_change=new User_change(this);//用户修改密码窗口;
+	private User_record user_record=new User_record(this);//账号信息窗口;
 	
 	/**
 	 * Create the frame.
@@ -104,21 +110,39 @@ public class MainFrame extends JFrame {
 		user_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		menuBar.add(user_date);
 		
-		JMenuItem user_add = new JMenuItem("\u65B0\u589E\u7528\u6237");
-		user_add.setFont(new Font("宋体", Font.PLAIN, 12));
-		user_date.add(user_add);
+		JMenuItem user_new = new JMenuItem("\u65B0\u589E\u7528\u6237");
+		user_new.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				user_add.setVisible(true);
+				setEnabled(false);//点击后让主窗口禁止点击;
+			}
+		});
+		user_new.setFont(new Font("宋体", Font.PLAIN, 12));
+		user_date.add(user_new);
+		
+		JMenuItem change_btn = new JMenuItem("\u4FEE\u6539\u5BC6\u7801");
+		change_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				user_change.setVisible(true);
+				setEnabled(false);
+			}
+		});
+		user_date.add(change_btn);
+		change_btn.setFont(new Font("宋体", Font.PLAIN, 12));
 		
 		JMenuItem user_message = new JMenuItem("\u7528\u6237\u4FE1\u606F");
+		user_message.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(user_record.fillTable()==2||user_record.fillTable()==1){
+					setEnabled(false);//点击后让主窗口禁止点击;
+					user_record.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
+			}
+		});
 		user_message.setFont(new Font("宋体", Font.PLAIN, 12));
 		user_date.add(user_message);
-		
-		JMenuItem password_change = new JMenuItem("\u4FEE\u6539\u5BC6\u7801");
-		user_date.add(password_change);
-		password_change.setFont(new Font("宋体", Font.PLAIN, 12));
-		
-		JMenuItem user_remove = new JMenuItem("\u5220\u9664\u7528\u6237");
-		user_remove.setFont(new Font("宋体", Font.PLAIN, 12));
-		user_date.add(user_remove);
 		
 		JMenu xxcx = new JMenu("\u4F9B\u5E94\u5546\u7BA1\u7406");
 		xxcx.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -134,9 +158,15 @@ public class MainFrame extends JFrame {
 		sell_record.setFont(new Font("宋体", Font.PLAIN, 12));
 		xxcx.add(sell_record);
 		
-		JMenuItem menuItem_2 = new JMenuItem("\u5220\u9664\u4F9B\u5E94\u5546");
-		menuItem_2.setFont(new Font("宋体", Font.PLAIN, 12));
-		xxcx.add(menuItem_2);
+		JMenuItem change_pro = new JMenuItem("\u66F4\u6539\u4F9B\u5E94\u5546");
+		change_pro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pro_change.setVisible(true);
+				setEnabled(false);
+			}
+		});
+		change_pro.setFont(new Font("宋体", Font.PLAIN, 12));
+		xxcx.add(change_pro);
 		
 		JMenuItem provide_check = new JMenuItem("\u4F9B\u5E94\u5546\u67E5\u8BE2");
 		provide_check.addActionListener(new ActionListener() {
@@ -147,10 +177,6 @@ public class MainFrame extends JFrame {
 		});
 		provide_check.setFont(new Font("宋体", Font.PLAIN, 12));
 		xxcx.add(provide_check);
-		
-		JMenuItem provide_update = new JMenuItem("\u66F4\u65B0\u4FE1\u606F");
-		provide_update.setFont(new Font("宋体", Font.PLAIN, 12));
-		xxcx.add(provide_update);
 		
 		JMenu xtwh = new JMenu("\u7CFB\u7EDF\u7EF4\u62A4");
 		xtwh.setFont(new Font("宋体", Font.PLAIN, 12));

@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.lzw.dao.model.TbBuy;
 import com.lzw.dao.model.TbPro;
+import com.lzw.dao.model.TbUser;
 import com.lzw.util.GetModel;
 import com.lzw.util.MyTableModel;
 
@@ -21,13 +21,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
-public class Pro_record extends JFrame {
+public class User_record extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	
-	public Pro_record(JFrame root) {
-		setBounds(400, 200, 600, 260);
+	public User_record(JFrame root) {
+		setTitle("\u7528\u6237\u5217\u8868");
+		setResizable(false);
+		setBounds(600, 200, 220, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -44,7 +46,6 @@ public class Pro_record extends JFrame {
 		row.setHorizontalAlignment(JLabel.CENTER); //单元格居中对齐;
 		table.setDefaultRenderer(Object.class,row);
 		table.setFillsViewportHeight(true);
-		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e){
@@ -52,24 +53,19 @@ public class Pro_record extends JFrame {
 	        }
 	    });
 	}
-	/*
-	 * 	填充供应商信息表格;
-	 */
+	public JTable getTable() {
+		return table;
+	}
 	@SuppressWarnings("unused")
 	public int fillTable(){
-		List<TbPro> list = GetModel.getAllPro();
+		List<TbUser> list = GetModel.getAllUser();
 		if(list.size() == 0){
 			return 1;
 		}else if(list == null){
 			return 0;
 		}else{
-			getTable().setModel(new MyTableModel<TbPro>(list,new String[] {
-			"编号", "厂商", "联系电话", "邮箱", "地址"}));
+			getTable().setModel(new MyTableModel<TbUser>(list,new String[]{"账号", "密码"}));
 			return 2;
 		}
 	}
-	public JTable getTable() {
-		return table;
-	}
-
 }

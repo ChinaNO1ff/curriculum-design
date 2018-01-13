@@ -107,4 +107,15 @@ public class DeleteModel {
 			e.printStackTrace();
 		}
 	}
+	/*
+	 * 	删除指定用户数据
+	 */
+	public static void deleteUser(String username){
+		String where = "name='"+username + "'";
+		try {
+			Dao.conn.createStatement().execute("delete from tb_User where "+where);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
