@@ -17,6 +17,9 @@ public class MainFrame extends JFrame {
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口
 	private Buy_change buy_change=new Buy_change(this);//修改采购订单的窗口;
 	
+	private Pro_add pro_add=new Pro_add(this);//增加供应商信息窗口;
+	private Pro_record pro_record=new Pro_record(this);//供应商查询窗口
+	
 	/**
 	 * Create the frame.
 	 */
@@ -60,15 +63,15 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
-		JMenuItem remove_buy = new JMenuItem("\u4FEE\u6539\u8BA2\u5355");
-		remove_buy.addActionListener(new ActionListener() {
+		JMenuItem change_buy = new JMenuItem("\u4FEE\u6539\u8BA2\u5355");
+		change_buy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buy_change.setVisible(true);
 				setEnabled(false);//点击后让主窗口禁止点击;
 			}
 		});
-		remove_buy.setFont(new Font("宋体", Font.PLAIN, 12));
-		jhgl.add(remove_buy);
+		change_buy.setFont(new Font("宋体", Font.PLAIN, 12));
+		jhgl.add(change_buy);
 		
 		buy_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		jhgl.add(buy_date);
@@ -122,6 +125,12 @@ public class MainFrame extends JFrame {
 		menuBar.add(xxcx);
 		
 		JMenuItem sell_record = new JMenuItem("\u65B0\u589E\u4F9B\u5E94\u5546");
+		sell_record.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pro_add.setVisible(true);
+				setEnabled(false);//点击后让主窗口禁止点击;
+			}
+		});
 		sell_record.setFont(new Font("宋体", Font.PLAIN, 12));
 		xxcx.add(sell_record);
 		
@@ -130,6 +139,12 @@ public class MainFrame extends JFrame {
 		xxcx.add(menuItem_2);
 		
 		JMenuItem provide_check = new JMenuItem("\u4F9B\u5E94\u5546\u67E5\u8BE2");
+		provide_check.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pro_record.setVisible(true);
+				setEnabled(false);
+			}
+		});
 		provide_check.setFont(new Font("宋体", Font.PLAIN, 12));
 		xxcx.add(provide_check);
 		
