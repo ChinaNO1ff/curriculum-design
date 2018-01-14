@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.lzw.dao.model.TbUser;
+import com.lzw.util.GetModel;
 import com.lzw.util.InsertModel;
 
 import javax.swing.JLabel;
@@ -85,6 +86,11 @@ public class User_add extends JFrame {
 		submit.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
+				try{
+					GetModel.getAllUser();
+				}catch(Exception e1){
+					JOptionPane.showMessageDialog(null, "连接数据库超时");
+				}
 				if(username.getText().trim().equals("")||password.getText().trim().equals("")||repeat.getText().trim().equals("")||in_code.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "请输入完整的信息!");
 				}else{

@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import com.lzw.dao.model.TbPro;
+import com.lzw.util.GetModel;
 import com.lzw.util.InsertModel;
 import com.lzw.util.Patt;
 import com.lzw.util.Timer;
@@ -82,6 +83,11 @@ public class Pro_add extends JFrame {
 		submit.setFont(new Font("宋体", Font.PLAIN, 12));
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					GetModel.getAllPro();
+				}catch(Exception e1){
+					JOptionPane.showMessageDialog(null, "连接数据库超时");
+				}
 				if(name.getText().trim().equals("")||phone.getText().trim().equals("")||mail.getText().trim().equals("")||address.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "请输入完整的信息!");
 				}else{
@@ -142,7 +148,6 @@ public class Pro_add extends JFrame {
 		tp.setPhone(phone.getText().trim());
 		tp.setMail(mail.getText().trim());
 		tp.setAddress(address.getText().trim());
-		System.out.println(tp);
 		tp.setNumber(Timer.getNum());
 		InsertModel.insertPro(tp);
 		JOptionPane.showMessageDialog(null, "添加供应商成功");

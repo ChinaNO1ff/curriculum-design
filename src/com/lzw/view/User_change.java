@@ -104,6 +104,11 @@ public class User_change extends JFrame {
 		JButton submit = new JButton("\u63D0\u4EA4");
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					GetModel.getAllUser();
+				}catch(Exception e1){
+					JOptionPane.showMessageDialog(null, "连接数据库超时");
+				}
 				if(old_pass.getText().trim().equals("")||new_pass.getText().trim().equals("")||repeat.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "请输入完整的信息");
 				}else{
@@ -115,11 +120,7 @@ public class User_change extends JFrame {
 						if(!new_pass.getText().trim().equals(repeat.getText().trim())){
 							JOptionPane.showMessageDialog(null, "两次输入的新密码不相同");
 						}else{
-							try{
-								submit();
-							}catch(Exception e1){
-								JOptionPane.showMessageDialog(null, "连接数据库超时");
-							}
+							submit();
 						}
 					}
 				}

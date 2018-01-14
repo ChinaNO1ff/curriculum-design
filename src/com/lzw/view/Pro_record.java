@@ -1,7 +1,6 @@
 package com.lzw.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.lzw.dao.model.TbBuy;
 import com.lzw.dao.model.TbPro;
 import com.lzw.util.GetModel;
 import com.lzw.util.MyTableModel;
@@ -21,12 +19,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class Pro_record extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	
 	public Pro_record(JFrame root) {
+		setTitle("\u4F9B\u5E94\u5546\u67E5\u8BE2");
+		setResizable(false);
 		setBounds(400, 200, 600, 260);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

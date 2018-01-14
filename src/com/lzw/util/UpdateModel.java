@@ -33,17 +33,14 @@ public class UpdateModel {
 	public static void updateSell(TbSell tb){
 		update("update tb_sell set number='" + tb.getNumber() + "',name='"
 				+ tb.getName() + "',unit='" + tb.getUnit() + "',count='" 
-				+ tb.getCount() + "',total='" + tb.getTotal() + "',provide='"
-				+ tb.getProvide()+ "' where number='" + tb.getNumber() + "'");
+				+ tb.getCount() + "',total='" + tb.getTotal() + "' where number='"
+				+ tb.getNumber() + "'");
 	}
 	/*
 	 * 修改库存数据;
 	 */
 	public static void updateStore(TbStore tb){
-		update("update tb_store set number='" + tb.getNumber() + "',name='"
-				+ tb.getName() + "',unit='" + tb.getUnit() + "',count='" 
-				+ tb.getCount() + "',type='" + tb.getType() + "' where number='" 
-				+ tb.getNumber() + "'");
+		update("update tb_store set count='" + tb.getCount() + "' where name='" + tb.getName() + "'");
 	}
 	/*
 	 * 修改供应商数据;

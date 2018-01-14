@@ -163,6 +163,11 @@ public class Buy_change extends JFrame {
 	 * 更新订单内容
 	 */
 	private void update(){
+		try{
+			GetModel.getAllBuy();
+		}catch(Exception e1){
+			JOptionPane.showMessageDialog(null, "连接数据库超时");
+		}
 		if(number.getText().trim().equals("")){
 			JOptionPane.showMessageDialog(null, "请输入订单号");
 		}else{
@@ -190,6 +195,11 @@ public class Buy_change extends JFrame {
 	 * 	删除此订单;
 	 */
 	private void drop(){
+		try{
+			GetModel.getAllBuy();
+		}catch(Exception e1){
+			JOptionPane.showMessageDialog(null, "连接数据库超时");
+		}
 		if(number.getText().trim().equals("")){
 			JOptionPane.showMessageDialog(null, "请输入订单号");
 		}else{

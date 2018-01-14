@@ -1,16 +1,9 @@
 package com.lzw.dao.model;
 
 public class TbType {
-	private String ID;
 	private String type;
 	private String name;
 	
-	public String getID() {
-		return ID;
-	}
-	public void setID(String iD) {
-		ID = iD;
-	}
 	public String getType() {
 		return type;
 	}
@@ -23,8 +16,7 @@ public class TbType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public String toString() {
-		return "TbType [ID=" + ID + ", type=" + type + ", name=" + name + "]";
+		return "TbType [type=" + type + ", name=" + name + "]";
 	}
 }

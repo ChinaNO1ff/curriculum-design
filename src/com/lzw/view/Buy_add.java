@@ -58,6 +58,11 @@ public class Buy_add extends JFrame {
 		button.setFont(new Font("宋体", Font.PLAIN, 12));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					GetModel.getAllPro();
+				}catch(Exception e1){
+					JOptionPane.showMessageDialog(null, "连接数据库超时");
+				}
 				if(count.getText().trim().equals("")||unit.getText().trim().equals("")||person.getText().trim().equals("")){
 					JOptionPane.showMessageDialog(null, "请输入完整的信息!");
 				}else{

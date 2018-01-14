@@ -73,7 +73,6 @@ public class GetModel {
 				info.setName(set.getString("name"));
 				info.setUnit(set.getFloat("unit"));
 				info.setCount(set.getInt("count"));
-				info.setProvide(set.getString("provide"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,11 +99,8 @@ public class GetModel {
 		ResultSet set = Dao.findForResultSet("select * from tb_store where "+where);
 		try {
 			if(set.next()){
-				info.setNumber(set.getString("number"));
 				info.setName(set.getString("name"));
-				info.setUnit(set.getFloat("unit"));
 				info.setCount(set.getInt("count"));
-				info.setType(set.getString("type"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -197,5 +193,25 @@ public class GetModel {
 	public static List<TbUser> getAllUser(){
 		List<TbUser> list = Dao.findForList("select * from tb_user");
 		return list;
+	}
+	/*
+	 * 获取指定的库存数量;
+	 */
+	public static int getCountByName(String name){
+		int count = 0;
+		String where = "name='"+name + "'";
+		ResultSet buy = Dao.findForResultSet("select count from tb_buy where "+where);
+		ResultSet sell = Dao.findForResultSet("select count from tb_sell where "+where);
+		try {
+			while(buy.next()){
+				count += Integer.parseInt(buy.getString(1));
+			}
+			while(sell.next()){
+				count -= Integer.parseInt(sell.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

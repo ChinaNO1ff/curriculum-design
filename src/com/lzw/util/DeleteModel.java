@@ -64,9 +64,6 @@ public class DeleteModel {
 	 */
 	public static void deleteStore(Item item){
 		String where = "name='"+item.getName() + "'";
-		if(item.getNumber() != null){
-			where = "number='" + item.getNumber() + "'";
-		}
 		try {
 			Dao.conn.createStatement().execute("delete from tb_store where "+where);
 		} catch (SQLException e) {

@@ -6,7 +6,6 @@ public class TbSell {
 	private float unit;
 	private int count;
 	private float total;
-	private String provide;
 	public String getNumber() {
 		return number;
 	}
@@ -31,19 +30,15 @@ public class TbSell {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getProvide() {
-		return provide;
-	}
-	public void setProvide(String provide) {
-		this.provide = provide;
-	}
 	public float getTotal() {
 		return total;
 	}
-	
+	public void setTotal(float total) {
+		this.total = total;
+	}
 	public String toString() {
 		return "TbSell [number=" + number + ", name=" + name + ", unit=" + unit + ", count=" + count + ", total="
-				+ total + ", provide=" + provide + "]";
+				+ total + "]";
 	}
 	
 }

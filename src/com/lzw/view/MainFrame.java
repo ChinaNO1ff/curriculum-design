@@ -18,6 +18,10 @@ public class MainFrame extends JFrame {
 	private Buy_add buy_add=new Buy_add(this);//新增采购订单窗口;
 	private Buy_change buy_change=new Buy_change(this);//修改采购订单的窗口;
 	
+	private Sell_add sell_add=new Sell_add(this);//新增销售记录窗口;
+	private Sell_record sell_record=new Sell_record(this);//查询销售订单窗口;
+	private Sell_change sell_change=new Sell_change(this);//修改销售订单窗口;
+	
 	private Pro_add pro_add=new Pro_add(this);//增加供应商信息窗口;
 	private Pro_record pro_record=new Pro_record(this);//供应商查询窗口;
 	private Pro_change pro_change=new Pro_change(this);//供应商更新窗口;
@@ -25,6 +29,8 @@ public class MainFrame extends JFrame {
 	private User_add user_add=new User_add(this);//新增用户窗口;
 	private User_change user_change=new User_change(this);//用户修改密码窗口;
 	private User_record user_record=new User_record(this);//账号信息窗口;
+	
+	private Store_record store_record=new Store_record(this);//库存盘点窗口;
 	
 	/**
 	 * Create the frame.
@@ -61,6 +67,7 @@ public class MainFrame extends JFrame {
 		buy_date.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(buy_record.fillTable()==2||buy_record.fillTable()==1){
+					buy_record.fillTable();
 					setEnabled(false);//点击后让主窗口禁止点击;
 					buy_record.setVisible(true);
 				}else{
@@ -86,11 +93,43 @@ public class MainFrame extends JFrame {
 		xsgl.setFont(new Font("宋体", Font.PLAIN, 12));
 		menuBar.add(xsgl);
 		
-		JMenuItem menuItem_1 = new JMenuItem("\u65B0\u8BB0\u5F55");
-		menuItem_1.setFont(new Font("宋体", Font.PLAIN, 12));
-		xsgl.add(menuItem_1);
+		JMenuItem new_sell = new JMenuItem("\u65B0\u8BB0\u5F55");
+		new_sell.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sell_add.fillDrop()){
+					sell_add.fillDrop();
+					setEnabled(false);//点击后让主窗口禁止点击;
+					sell_add.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
+			}
+		});
+		new_sell.setFont(new Font("宋体", Font.PLAIN, 12));
+		xsgl.add(new_sell);
 		
 		JMenuItem sell_date = new JMenuItem("\u9500\u552E\u8BB0\u5F55");
+		sell_date.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sell_record.fillTable()==2||buy_record.fillTable()==1){
+					sell_record.fillTable();
+					setEnabled(false);//点击后让主窗口禁止点击;
+					sell_record.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
+			}
+		});
+		
+		JMenuItem sell_btn = new JMenuItem("\u4FEE\u6539\u8BB0\u5F55");
+		sell_btn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sell_change.setVisible(true);
+				setEnabled(false);//点击后让主窗口禁止点击;
+			}
+		});
+		sell_btn.setFont(new Font("宋体", Font.PLAIN, 12));
+		xsgl.add(sell_btn);
 		sell_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		xsgl.add(sell_date);
 		
@@ -98,11 +137,18 @@ public class MainFrame extends JFrame {
 		kcgl.setFont(new Font("宋体", Font.PLAIN, 12));
 		menuBar.add(kcgl);
 		
-		JMenuItem unit_date = new JMenuItem("\u8C03\u6574\u5E93\u5B58");
-		unit_date.setFont(new Font("宋体", Font.PLAIN, 12));
-		kcgl.add(unit_date);
-		
 		JMenuItem store_date = new JMenuItem("\u5E93\u5B58\u76D8\u70B9");
+		store_date.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(store_record.fillTable()==2||buy_record.fillTable()==1){
+					store_record.fillTable();
+					setEnabled(false);//点击后让主窗口禁止点击;
+					store_record.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
+			}
+		});
 		store_date.setFont(new Font("宋体", Font.PLAIN, 12));
 		kcgl.add(store_date);
 		
@@ -134,6 +180,7 @@ public class MainFrame extends JFrame {
 		user_message.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(user_record.fillTable()==2||user_record.fillTable()==1){
+					user_record.fillTable();
 					setEnabled(false);//点击后让主窗口禁止点击;
 					user_record.setVisible(true);
 				}else{
@@ -171,8 +218,13 @@ public class MainFrame extends JFrame {
 		JMenuItem provide_check = new JMenuItem("\u4F9B\u5E94\u5546\u67E5\u8BE2");
 		provide_check.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pro_record.setVisible(true);
-				setEnabled(false);
+				if(pro_record.fillTable()==2||buy_record.fillTable()==1){
+					pro_record.fillTable();
+					setEnabled(false);//点击后让主窗口禁止点击;
+					pro_record.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "连接数据库超时！");
+				}
 			}
 		});
 		provide_check.setFont(new Font("宋体", Font.PLAIN, 12));

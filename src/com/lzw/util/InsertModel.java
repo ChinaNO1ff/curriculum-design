@@ -30,15 +30,13 @@ public class InsertModel {
 	 */
 	public static void insertSell(TbSell tb){
 		insert("insert into tb_sell values('"+ tb.getNumber() + "','" + tb.getName() + "','"
-				+tb.getUnit() + "','" + tb.getCount() + "','" + tb.getTotal() + "','" 
-				+ tb.getProvide() + "')");
+				+tb.getUnit() + "','" + tb.getCount() + "','" + tb.getTotal() + "')");
 	}
 	/*
 	 * 	插入库存数据;
 	 */
 	public static void insertStore(TbStore tb){
-		insert("insert into tb_store values('"+ tb.getNumber() + "','" + tb.getName() + "','"
-				+tb.getUnit() + "','" + tb.getCount() + "','" + tb.getType() + "')");
+		insert("insert into tb_store values('"+ tb.getName() + "','" + "','" + tb.getCount() + "')");
 	}
 	/*
 	 *	 插入供应商数据;

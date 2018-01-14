@@ -1,7 +1,6 @@
 package com.lzw.view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.lzw.dao.model.TbPro;
 import com.lzw.dao.model.TbUser;
 import com.lzw.util.GetModel;
 import com.lzw.util.MyTableModel;
@@ -21,6 +19,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class User_record extends JFrame {
 
 	private JPanel contentPane;
