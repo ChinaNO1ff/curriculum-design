@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Pro_record extends JFrame {
@@ -26,6 +27,7 @@ public class Pro_record extends JFrame {
 	private JTable table;
 	
 	public Pro_record(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Pro_record.class.getResource("/res/g5.png")));
 		setTitle("\u4F9B\u5E94\u5546\u67E5\u8BE2");
 		setResizable(false);
 		setBounds(400, 200, 600, 260);

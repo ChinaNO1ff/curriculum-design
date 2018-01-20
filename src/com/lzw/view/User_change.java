@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class User_change extends JFrame {
@@ -32,6 +33,7 @@ public class User_change extends JFrame {
 	private String oldpwd = "";
 	
 	public User_change(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(User_change.class.getResource("/res/g7.png")));
 		setTitle("\u4FEE\u6539\u7528\u6237");
 		setResizable(false);
 		setBounds(460, 220, 480, 240);

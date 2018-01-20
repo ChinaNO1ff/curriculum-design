@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class User_record extends JFrame {
@@ -26,6 +27,7 @@ public class User_record extends JFrame {
 	private JTable table;
 	
 	public User_record(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(User_record.class.getResource("/res/g13.png")));
 		setTitle("\u7528\u6237\u5217\u8868");
 		setResizable(false);
 		setBounds(600, 200, 220, 300);

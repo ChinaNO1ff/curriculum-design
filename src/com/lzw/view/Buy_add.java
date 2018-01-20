@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Buy_add extends JFrame {
@@ -31,7 +32,8 @@ public class Buy_add extends JFrame {
 	private JTextField person;
 	
 
-	public Buy_add(JFrame root) {//主窗口的引用;
+	public Buy_add(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Buy_add.class.getResource("/res/g1.png")));//主窗口的引用;
 		setResizable(false);
 		setTitle("\u91C7\u8D2D\u8BA2\u5355");
 		setBounds(480, 180, 450, 300);

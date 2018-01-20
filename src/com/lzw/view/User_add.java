@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class User_add extends JFrame {
@@ -34,6 +35,7 @@ public class User_add extends JFrame {
 	private String rand="";
 	
 	public User_add(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(User_add.class.getResource("/res/g2.png")));
 		rand = createCode();
 		setResizable(false);
 		setTitle("\u6CE8\u518C\u8D26\u53F7");

@@ -26,6 +26,7 @@ import java.util.List;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Sell_add extends JFrame {
@@ -36,6 +37,7 @@ public class Sell_add extends JFrame {
 	private JTextField unit;
 
 	public Sell_add(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Sell_add.class.getResource("/res/g1.png")));
 		setResizable(false);
 		setFont(new Font("ËÎÌו", Font.PLAIN, 12));
 		setTitle("\u9500\u552E\u8BA2\u5355");

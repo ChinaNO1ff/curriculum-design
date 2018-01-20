@@ -17,6 +17,7 @@ import com.lzw.util.MyTableModel;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Sell_record extends JFrame {
@@ -25,6 +26,7 @@ public class Sell_record extends JFrame {
 	private JTable table;
 
 	public Sell_record(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Sell_record.class.getResource("/res/g5.png")));
 		setTitle("\u9500\u552E\u8BB0\u5F55");
 		setResizable(false);
 		setBounds(480, 200, 450, 300);

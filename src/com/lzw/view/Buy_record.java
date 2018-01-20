@@ -17,6 +17,7 @@ import com.lzw.util.GetModel;
 import com.lzw.util.MyTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Buy_record extends JFrame {
@@ -27,7 +28,8 @@ public class Buy_record extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Buy_record(JFrame root) {//主窗口的引用;
+	public Buy_record(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Buy_record.class.getResource("/res/g5.png")));//主窗口的引用;
 		setResizable(false);
 		setTitle("\u91C7\u8D2D\u8BB0\u5F55");
 		setBounds(420, 180, 560, 320);

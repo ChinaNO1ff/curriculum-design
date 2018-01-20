@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Pro_change extends JFrame {
@@ -34,6 +35,7 @@ public class Pro_change extends JFrame {
 	private String num;
 	
 	public Pro_change(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Pro_change.class.getResource("/res/g7.png")));
 		setTitle("\u66F4\u6539\u5382\u5546\u4FE1\u606F");
 		setResizable(false);
 		setBounds(480, 230, 450, 240);

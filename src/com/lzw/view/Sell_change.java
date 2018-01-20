@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Sell_change extends JFrame {
@@ -33,6 +34,7 @@ public class Sell_change extends JFrame {
 	private String num = "";
 
 	public Sell_change(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Sell_change.class.getResource("/res/g7.png")));
 		setTitle("\u4FEE\u6539\u8BA2\u5355");
 		setResizable(false);
 		setBounds(480, 220, 450, 220);

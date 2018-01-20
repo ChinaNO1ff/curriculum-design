@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Store_record extends JFrame {
@@ -30,6 +31,7 @@ public class Store_record extends JFrame {
 	private JTable table;
 
 	public Store_record(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Store_record.class.getResource("/res/g3.png")));
 		setResizable(false);
 		setTitle("\u5E93\u5B58\u76D8\u70B9");
 		setBounds(480, 200, 450, 300);

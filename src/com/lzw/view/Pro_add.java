@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Pro_add extends JFrame {
@@ -32,6 +33,7 @@ public class Pro_add extends JFrame {
 	private JTextArea address;
 	
 	public Pro_add(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Pro_add.class.getResource("/res/g1.png")));
 		setResizable(false);
 		setTitle("\u589E\u52A0\u4F9B\u5E94\u5546");
 		setBounds(540, 170, 360, 360);

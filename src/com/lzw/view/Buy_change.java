@@ -21,6 +21,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class Buy_change extends JFrame {
@@ -34,6 +35,7 @@ public class Buy_change extends JFrame {
 	private String num;
 
 	public Buy_change(JFrame root) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Buy_change.class.getResource("/res/g7.png")));
 		setResizable(false);
 		setTitle("\u4FEE\u6539\u8BA2\u5355");
 		setBounds(460, 200, 480, 260);
